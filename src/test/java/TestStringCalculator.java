@@ -40,4 +40,24 @@ public class TestStringCalculator {
         assertEquals(22, stringCalculator.add("5,10\n7"));
     }
 
+    @Test
+    public void testGetDelimter(){
+        assertEquals(";", stringCalculator.getDelimiter("//;\n1;2,3"));
+        assertEquals("-", stringCalculator.getDelimiter("//-\nad1;2,3"));
+    }
+    @Test
+    public void testGetDelimterDefaultDelimiter(){
+        assertEquals(",|\n", stringCalculator.getDelimiter("a//;\n1;2,3"));
+        assertEquals(",|\n", stringCalculator.getDelimiter(",//-\nad1;2,3"));
+    }
+
+    @Test
+    public void useDifferentDelimitersInNumbers(){
+        assertEquals(15, stringCalculator.add("//-\n2-2-4-7"));
+        assertEquals(6, stringCalculator.add("//!\n1!2!3"));
+        assertEquals(3, stringCalculator.add("//;\n1;2"));
+    }
+
+
+
 }
