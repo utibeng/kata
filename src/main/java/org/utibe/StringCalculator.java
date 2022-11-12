@@ -13,7 +13,7 @@ public class StringCalculator {
 
         int sum = 0;
 
-        //variable number of numbers
+        //Step 2 - variable number of numbers
         String [] numbers = number.split(",");
         logger.info("parsed string is {}", Arrays.asList(numbers));
         for(String numString:numbers){
