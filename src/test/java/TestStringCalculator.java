@@ -29,5 +29,10 @@ public class TestStringCalculator {
     public void twoNumbersReturnsTheirSum(){
         assertEquals(5, stringCalculator.add("3,2"));
     }
+    @Test
+    public void UnknownNumberofNumbersReturnsTheirSum(){
+        assertEquals(30, stringCalculator.add("10,12,8"));
+        assertEquals(50, stringCalculator.add("5,10,15,20"));
+    }
 
 }
