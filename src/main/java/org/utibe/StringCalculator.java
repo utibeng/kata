@@ -14,7 +14,8 @@ public class StringCalculator {
         int sum = 0;
 
         //Step 2 - variable number of numbers
-        String [] numbers = number.split(",");
+        //String [] numbers = number.split(",");
+        String [] numbers = number.split(",|\n");
         logger.info("parsed string is {}", Arrays.asList(numbers));
         for(String numString:numbers){
             try{
@@ -24,7 +25,6 @@ public class StringCalculator {
                 logger.info("error parsing {}", numString);
             }
         }
-
         return sum;
     }
 

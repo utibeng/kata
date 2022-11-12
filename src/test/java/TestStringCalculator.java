@@ -30,9 +30,14 @@ public class TestStringCalculator {
         assertEquals(5, stringCalculator.add("3,2"));
     }
     @Test
-    public void UnknownNumberofNumbersReturnsTheirSum(){
+    public void unknownNumberOfNumbersReturnsTheirSum(){
         assertEquals(30, stringCalculator.add("10,12,8"));
         assertEquals(50, stringCalculator.add("5,10,15,20"));
+    }
+    @Test
+    public void allowNewlinesInNumbersReturnsTheirSum(){
+        assertEquals(6, stringCalculator.add("1\n2,3"));
+        assertEquals(22, stringCalculator.add("5,10\n7"));
     }
 
 }
