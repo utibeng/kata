@@ -64,7 +64,7 @@ public class TestStringCalculator {
     }
 
     @Test
-    public void checkNegativesNotAllowedException() throws NegativesNotAllowedException{
+    public void checkNegativesNotAllowedException() {
 
         assertThrows(
                 NegativesNotAllowedException.class, () ->
@@ -78,23 +78,29 @@ public class TestStringCalculator {
     }
 
     @Test
-    public void listAllNegativesTest() throws NegativesNotAllowedException{
+    public void listAllNegativesTest() {
 
         NegativesNotAllowedException negativesNotAllowedException = assertThrows(
                 NegativesNotAllowedException.class, () ->
                 {stringCalculator.listAllNegativeNumbers(new String [] {"6", "-1", "-2", "2"}); }
         );
-
         assertEquals("Negatives not allowed: [-1, -2]", negativesNotAllowedException.getMessage());
-
     }
 
     @Test
     public void ignoreNumbersGreaterThan1000() throws NegativesNotAllowedException{
         assertEquals(15, stringCalculator.add("//,\n2,2,4,1783,7"));
         assertEquals(2, stringCalculator.add("1001,2"));
-        //assertEquals(3, stringCalculator.add("//;\n1;2"));
     }
+
+    @Test
+    public void variableLengthDelimiters() throws NegativesNotAllowedException{
+        assertEquals(25, stringCalculator.add("//[!!!!]\n2!!!!12!!!!4!!!!7"));
+        assertEquals(10, stringCalculator.add("//[#]\n2000#10"));
+        assertEquals(6, stringCalculator.add("//[|||]\n1|||2|||3" ));
+    }
+
+
 
 
 

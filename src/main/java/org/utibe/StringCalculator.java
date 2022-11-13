@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 //import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,7 +19,11 @@ public class StringCalculator {
         int sum = 0;
         int currentNumber;
         String delimiter = this.getDelimiter(numbersString);
+
+        logger.info("input string is {} and delimiter is {}", numbersString, delimiter);
         String [] numbers = this.stripDelimiter(numbersString).split(delimiter);
+
+        logger.info("stripped and split string is {}", Arrays.asList(numbers));
 
         this.listAllNegativeNumbers(numbers);
 
@@ -38,7 +43,9 @@ public class StringCalculator {
 
     public String getDelimiter(String numbers){
         String defaultDelimiter = ",|\n";
-        Matcher matchedNumber = this.getMatcherForString(numbers, "//(\\S)\n(\\S*)");
+        //Matcher matchedNumber = this.getMatcherForString(numbers, "//(\\S)\n(\\S*)");
+        //Step 7 variable lengths delimiter
+        Matcher matchedNumber = this.getMatcherForString(numbers, "//\\[(\\S+)\\]\n(\\S*)");
         if (matchedNumber.matches()) {
             return  matchedNumber.group(1);
         }
@@ -47,7 +54,8 @@ public class StringCalculator {
 
     public String stripDelimiter(String numbers){
 
-        Matcher matchedNumber = this.getMatcherForString(numbers, "//(\\S)\n(\\S*)");
+        //Matcher matchedNumber = this.getMatcherForString(numbers, "//(\\S)\n(\\S*)");
+        Matcher matchedNumber = this.getMatcherForString(numbers, "//\\[(\\S+)\\]\n(\\S*)");
         if (matchedNumber.matches()) {
             return  matchedNumber.group(2);
         }
@@ -86,6 +94,8 @@ public class StringCalculator {
         //new StringCalculator().getDelimiter("//$\n1;");
         //logger.info(new StringCalculator().stripDelimiter("//$\n67,7,9"));
         //logger.info(Arrays.asList("2$2$4$7".split("\\$")));
+
+        logger.info(new StringCalculator().getDelimiter("//[###]\n2###12###4###7"));
 
     }*/
 
