@@ -16,6 +16,7 @@ public class StringCalculator {
     public int add(String numbersString) throws NegativesNotAllowedException{
 
         int sum = 0;
+        int currentNumber;
         String delimiter = this.getDelimiter(numbersString);
         String [] numbers = this.stripDelimiter(numbersString).split(delimiter);
 
@@ -23,7 +24,10 @@ public class StringCalculator {
 
         for(String numString:numbers){
             try{
-                sum += Integer.parseInt(numString);
+                currentNumber = Integer.parseInt(numString);
+
+                if (currentNumber <= 1000)
+                    sum += currentNumber;
             }
             catch (NumberFormatException numberFormatException){
                 logger.info("could not parse {}", numString);

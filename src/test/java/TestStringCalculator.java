@@ -89,6 +89,13 @@ public class TestStringCalculator {
 
     }
 
+    @Test
+    public void ignoreNumbersGreaterThan1000() throws NegativesNotAllowedException{
+        assertEquals(15, stringCalculator.add("//,\n2,2,4,1783,7"));
+        assertEquals(2, stringCalculator.add("1001,2"));
+        //assertEquals(3, stringCalculator.add("//;\n1;2"));
+    }
+
 
 
 }
